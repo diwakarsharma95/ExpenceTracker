@@ -31,25 +31,45 @@ class ViewController: UIViewController {
     }
     
     @IBAction func Enter(_ sender: Any) {
-        //textArea.text = "->\(self.textField.text ?? " ")"
         let str = self.textField.text
+        addingItemsToDictionaries(str: str)
+        if str == "Shopping"{
+            for (key,value) in Shopping{
+                textArea.text = "Shopping \(value) $\(key)"
+            }
+        }else if str == "Entertainment"{
+            for (key,value) in Entertainment{
+                textArea.text = "Entertainment \(value) $\(key)"
+            }
+        }else if str == "Education"{
+            for (key,value) in Education{
+                textArea.text = "Education \(value) $\(key)"
+            }
+        }else{
+        }
+    }
+
+    func addingItemsToDictionaries(str: String?){
         if let newStr = str{
-        let newStrArr = newStr.components(separatedBy: String(" "))
-        if newStrArr[0].contains("add"){
-            let category = newStrArr[1]
-            let description = newStrArr[2]
-            let amount = newStrArr[3]
-            textArea.text = "-> Added \(category) \(description) $\(amount)"
-            if category == "Entertainment"{
-                Entertainment[Int(amount)!] = description
-            }else if category == "Shopping"{
-                Shopping[Int(amount)!] = description
-            }else{
-                Education[Int(amount)!] = description
+            let newStrArr = newStr.components(separatedBy: String(" "))
+            if newStrArr[0].contains("add"){
+                let category = newStrArr[1]
+                let description = newStrArr[2]
+                let amount = newStrArr[3]
+                textArea.text = "-> Added \(category) \(description) $\(amount)"
+                if category == "Entertainment"{
+                    Entertainment[Int(amount)!] = description
+                }else if category == "Shopping"{
+                    Shopping[Int(amount)!] = description
+                }else{
+                    Education[Int(amount)!] = description
+                }
             }
         }
     }
-}
+    func listItemsOfASpecificCatagory(str: String){
+        
+    }
         
         
 //        while true{
